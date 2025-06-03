@@ -71,3 +71,19 @@
      ```bash
      bash /tmp/installer.sh
      ```
+
+### Running Frappe Development Server
+
+8. **Start Development Environment:**
+   - Run the following command:
+     ```powershell
+     wsl -d frappe-dev
+     ```
+   - In the WSL terminal, run:
+     ```bash
+     cd ~/opt/frappe-dev
+     bench start
+     ```
+9. **Using Frappe:**
+   - Open Google Chrome
+   - Navigate to http://localhost:8000
