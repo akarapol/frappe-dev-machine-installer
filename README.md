@@ -28,9 +28,9 @@
      ```
    - Set user and password when the system prompted
    - Run the following command to exit from WSL:
-   ```powershell
-   exit
-   ```
+     ```powershell
+     exit
+     ```
 
 ### Access WSL Instance
 
@@ -60,17 +60,24 @@
 6. **Change variables in the script if needed:**
 
    - Open the script in a text editor, for example:
+
      ```bash
      nano /tmp/installer.sh
      ```
-   - Make any necessary changes to the variables.
+
+   - Change password for security purpose
+     <img src="images/set_variables.png" width="600px">
    - Save and exit the editor.
 
 7. **Run the script:**
+
    - In the WSL terminal, run:
+
      ```bash
      bash /tmp/installer.sh
      ```
+
+   - WSL session will restart after installation
 
 ### Running Frappe Development Server
 
@@ -87,3 +94,4 @@
 9. **Using Frappe:**
    - Open Google Chrome
    - Navigate to http://localhost:8000
+   - Login with user Administrator with password set in the installation script
