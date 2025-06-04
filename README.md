@@ -1,6 +1,8 @@
 # Frappe Developer Machine Setup
 
-### Running on Windows using WSL
+## Windows/MacOS Preparation
+
+### **Running on Windows using WSL**
 
 1. **Check if WSL is installed:**
 
@@ -12,15 +14,15 @@
    - If WSL is not installed, proceed to the next step.
 
 2. **Enable WSL:**
+
    - Run the following command:
      ```powershell
      wsl --install
      ```
    - **Restart your computer.**
 
-### Create WSL Instance
-
 3. **Create a WSL instance named "frappe-dev":**
+
    - **Open Windows Terminal as Administrator.**
    - Run the following command:
      ```powershell
@@ -32,27 +34,45 @@
      exit
      ```
 
-### Access WSL Instance
-
 4. **Access the "frappe-dev" WSL instance:**
    - Run the following command:
      ```powershell
      wsl -d frappe-dev
      ```
 
-### Running on Ubuntu/Debian
+### **Running on MacOS using colima**
 
-> COMING SOON !!!
+1. **Install colima using Homebrew:**
+   - Open Terminal
+   - Run:
+     ```bash
+     brew install colima
+     ```
+2. **Create VM using limactl:**
+   - Run:
+     ```bash
+     limactl create --name frappe-dev --cpu 4 --memory 4G --disk 16G
+     ```
+3. **Start the VM:**
+   - List VMs to confirm creation:
+     ```bash
+     limactl list
+     ```
+   - Start the VM if not already running:
+     ```bash
+     limactl start frappe-dev
+     ```
+4. **Access the VM:**
+   - Open a shell session in the VM:
+     ```bash
+     limactl shell frappe-dev
+     ```
 
-### Running on MacOS using colima
-
-> COMING SOON !!!
-
-### Download and Run Installer Script
+## Download and Run Installer Script
 
 5. **Download the installer script using curl:**
 
-   - In the WSL terminal, run:
+   - In the terminal, run:
      ```bash
      curl -fsSL -o /tmp/installer.sh https://raw.githubusercontent.com/akarapol/frappe-dev-machine-installer/refs/heads/main/installer.sh
      ```
@@ -77,20 +97,28 @@
      bash /tmp/installer.sh
      ```
 
-   - WSL session will restart after installation
+   - Terminal session will restart after installation
 
-### Running Frappe Development Server
+## Running Frappe Development Server
 
 8. **Start Development Environment:**
+
    - Run the following command:
-     ```powershell
+
+     ```bash
+     # for Windows using WSL
      wsl -d frappe-dev
+
+     # for MacOS
+     limactl start frappe-dev && limactl shell frappe-dev
      ```
-   - In the WSL terminal, run:
+
+   - In the terminal, run:
      ```bash
      cd ~/opt/frappe-dev
      bench start
      ```
+
 9. **Using Frappe:**
    - Open Google Chrome
    - Navigate to http://localhost:8000
