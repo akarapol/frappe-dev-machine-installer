@@ -65,7 +65,7 @@ install_mariadb() {
 # Function to install necessary dependencies
 install_dependencies() {
   echo "Installing dependencies..."
-  if ! sudo apt install -y git python-is-python3 python3-dev python3-pip python3-venv redis-server pkg-config; then
+  if ! sudo apt install -y micro git python-is-python3 python3-dev python3-pip python3-venv redis-server pkg-config; then
     echo "Failed to install dependencies."
     exit 1
   fi
@@ -80,7 +80,7 @@ install_nvm() {
   fi
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  local node_version="22.15" # ***CHANGE IF NEEDED***
+  local node_version="22.16" # ***CHANGE IF NEEDED***
   if ! nvm install "$node_version" || ! nvm use ${node_version}; then
     echo "Failed to install Node.js."
     exit 1
@@ -220,7 +220,7 @@ main() {
   local frappe_version="develop" # Specify branch or tags
   local repo_addr="https://github.com/frappe" # Frappe repo location
   local site_name="dev.frappe.local" # Site Name
-  local db_name="frappe"
+  local db_name="frappe-dev"
   local db_password=$(openssl rand -hex 12)
   local admin_password="1234" # Default administrator password ***PLEASE CHANGE***
 
