@@ -150,7 +150,8 @@ setup_new_site() {
   local admin_password="$6"
 
 
-  cd "$instance_path" &&
+  cd "$instance_path" && 
+  redis-server config/redis_cache.conf &
   if ! bench new-site "$site_name" \
     --db-root-username "root" \
     --db-root-password "$root_password" \
