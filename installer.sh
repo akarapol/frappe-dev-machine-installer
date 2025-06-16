@@ -65,7 +65,7 @@ install_mariadb() {
 # Function to install necessary dependencies
 install_dependencies() {
   echo "Installing dependencies..."
-  if ! sudo apt install -y micro git python-is-python3 python3-dev python3-pip python3-venv redis-server pkg-config; then
+  if ! sudo apt install -y cron git micro pkg-config python-is-python3 python3-dev python3-pip python3-venv redis-server; then
     echo "Failed to install dependencies."
     exit 1
   fi
@@ -96,7 +96,7 @@ install_lazygit() {
   echo "Installing lazygit..."
   if ! which lazygit > /dev/null; then
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-    
+
     # Determine the architecture and download the appropriate package
     ARCH=$(uname -m)
     if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
@@ -104,7 +104,7 @@ install_lazygit() {
     else
       curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     fi
-    
+
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit -D -t /usr/local/bin
     rm lazygit.tar.gz lazygit
@@ -158,7 +158,7 @@ setup_new_site() {
   local admin_password="$6"
 
 
-  cd "$instance_path" && 
+  cd "$instance_path" &&
   redis-server config/redis_cache.conf &
   if ! bench new-site "$site_name" \
     --db-root-username "root" \
