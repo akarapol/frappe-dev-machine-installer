@@ -51,7 +51,7 @@
 2. **Create VM using limactl:**
    - Run:
      ```bash
-     limactl create --name frappe-dev --cpu 4 --memory 4G --disk 16G
+     limactl create --name=frappe-dev --cpus=4 --memory=4 --disk=16 --mount-type=virtiofs template://ubuntu-24.04
      ```
 3. **Start the VM:**
    - List VMs to confirm creation:
