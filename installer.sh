@@ -201,6 +201,9 @@ enable_production_mode() {
   cd "$instance_path" &&
   sudo pip install ansible --break-system-package &&
   sudo apt install supervisor &&
+  bench setup supervisor &&
+  bench setup nginx &&
+  sudo sed -i 's/user www-data;/user barista;/' /etc/nginx/nginx.conf &&
   sudo bench setup production ${USER}
 }
 
