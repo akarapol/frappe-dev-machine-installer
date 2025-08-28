@@ -146,6 +146,8 @@ setup_new_instance() {
   fi
   cd "$instance_path" &&
   chmod -R o+rx "$instance_path"
+
+  bench get-app erpnext --branch "$frappe_version"
 }
 
 # Function to set up a new Frappe site
@@ -177,7 +179,6 @@ setup_new_site() {
     echo "Failed to configure the new Frappe site."
     exit 1
   fi
-  bench get-app erpnext
   bench install-app erpnext
 }
 
@@ -237,12 +238,12 @@ main() {
   install_frappe_bench
 
   local install_dir="${HOME}/opt"
-  local instance_name="frappe-dev"
+  local instance_name="erpnext"
   local frappe_instance="$install_dir/$instance_name"
-  local frappe_version="develop" # Specify branch or tags
+  local frappe_version="version-15" # Specify branch or tags
   local repo_addr="https://github.com/frappe" # Frappe repo location
-  local site_name="dev.frappe.local" # Site Name
-  local db_name="frappe-dev"
+  local site_name="dev.erpnext.local" # Site Name
+  local db_name="erpnext"
   local db_password=$(openssl rand -hex 12)
   local admin_password="1234" # Default administrator password ***PLEASE CHANGE***
 
