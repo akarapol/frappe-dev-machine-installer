@@ -74,7 +74,7 @@
 
    - In the terminal, run:
      ```bash
-     curl -fsSL -o /tmp/installer.sh https://raw.githubusercontent.com/akarapol/frappe-dev-machine-installer/refs/heads/main/installer.sh
+     curl -fsSL -o /tmp/installer.sh https://raw.githubusercontent.com/akarapol/frappe-dev-machine-installer/refs/heads/erpnext/installer.sh
      ```
 
 6. **Change variables in the script if needed:**
