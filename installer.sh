@@ -159,6 +159,7 @@ setup_new_site() {
 
 
   cd "$instance_path" &&
+  redis-server config/redis_queue.conf &
   redis-server config/redis_cache.conf &
   if ! bench new-site "$site_name" \
     --db-root-username "root" \
