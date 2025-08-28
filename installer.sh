@@ -177,6 +177,8 @@ setup_new_site() {
     echo "Failed to configure the new Frappe site."
     exit 1
   fi
+  bench get-app erpnext
+  bench install-app erpnext
 }
 
 # Function to enable developer mode for Frappe
@@ -189,6 +191,16 @@ enable_developer_mode() {
     echo "Failed to enable developer mode."
     exit 1
   fi
+}
+
+# Function to enable production mode
+enable_production_mode() {
+  local instance_path="$1"
+  
+  cd "$instance_path" &&
+  sudo pip install ansible --break-system-package &&
+  sudo apt install supervisor &&
+  sudo bench setup production ${USER}
 }
 
 # Function to update the .bashrc file
@@ -236,7 +248,7 @@ main() {
 
   setup_new_instance "$frappe_instance" "$frappe_version" "$repo_addr"
   setup_new_site "$frappe_instance" "$site_name" "$root_password" "$db_name" "$db_password" "$admin_password"
-  enable_developer_mode "$frappe_instance" "$site_name"
+  enable_production_mode "$frappe_instance"
 
   echo "Frappe installation completed successfully."
 
