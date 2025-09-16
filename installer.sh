@@ -116,7 +116,7 @@ install_lazygit() {
 # Function to install Frappe dependencies
 install_frappe_dependencies() {
   echo "Installing Frappe dependencies..."
-  if ! sudo apt install -y xvfb libfontconfig wkhtmltopdf; then
+  if ! sudo apt install -y xvfb libfontconfig; then
     echo "Failed to install Frappe dependencies."
     exit 1
   fi
@@ -146,6 +146,7 @@ setup_new_instance() {
   fi
   cd "$instance_path" &&
   chmod -R o+rx "$instance_path"
+  bench get-app --branch develop workshop https://github.com/akarapol/frappe-workshop.git
 }
 
 # Function to set up a new Frappe site
@@ -177,6 +178,7 @@ setup_new_site() {
     echo "Failed to configure the new Frappe site."
     exit 1
   fi
+  bench install-app workshop
 }
 
 # Function to enable developer mode for Frappe
