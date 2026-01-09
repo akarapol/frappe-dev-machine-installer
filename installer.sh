@@ -69,6 +69,8 @@ install_dependencies() {
     echo "Failed to install dependencies."
     exit 1
   fi
+  curl -LsSf https://astral.sh/uv/install.sh | sh && \
+  source $HOME/.local/bin/env
 }
 
 # Function to install nvm (Node Version Manager) and Node.js
