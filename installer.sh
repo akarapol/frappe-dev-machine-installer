@@ -69,8 +69,10 @@ install_dependencies() {
     echo "Failed to install dependencies."
     exit 1
   fi
+  local python_version="3.14" # ***CHANGE IF NEEDED***
   curl -LsSf https://astral.sh/uv/install.sh | sh && \
-  source $HOME/.local/bin/env
+  source $HOME/.local/bin/env && \
+  uv python install ${python_version} --default
 }
 
 # Function to install nvm (Node Version Manager) and Node.js
@@ -83,7 +85,7 @@ install_nvm() {
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   local node_version="22.16" # ***CHANGE IF NEEDED***
-  if ! nvm install "$node_version" || ! nvm use ${node_version}; then
+  if ! nvm install "${node_version}" || ! nvm use ${node_version}; then
     echo "Failed to install Node.js."
     exit 1
   fi
