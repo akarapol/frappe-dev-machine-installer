@@ -84,7 +84,7 @@ install_nvm() {
   fi
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  local node_version="22.16" # ***CHANGE IF NEEDED***
+  local node_version="24.12" # ***CHANGE IF NEEDED***
   if ! nvm install "${node_version}" || ! nvm use ${node_version}; then
     echo "Failed to install Node.js."
     exit 1
